@@ -25,4 +25,14 @@ class CardsControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $this->assertContains('First Answer.', $crawler->text());
     }
+
+	public function testSubmittingQuestionLeadsToAnswer()
+	{
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/cards/1/question');
+
+		$ansCrawler = $client->click($crawler->selectLink('Submit')->link());
+
+        $this->assertContains('First Answer.', $ansCrawler->text());
+	}
 }
