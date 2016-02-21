@@ -6,13 +6,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class QuestionsController extends Controller
+class CardsController extends Controller
 {
     /**
-     * @Route("/questions/{id}")
+     * @Route("/cards/{id}/question")
      */
-    public function indexAction($id)
+    public function questionAction($id)
     {
-        return $this->render('default/questions.html.twig');
+        return $this->render('default/question.html.twig');
     }
 }

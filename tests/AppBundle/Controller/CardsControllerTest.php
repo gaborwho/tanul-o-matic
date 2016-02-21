@@ -4,13 +4,13 @@ namespace Tests\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class QuestionsControllerTest extends WebTestCase
+class CardsControllerTest extends WebTestCase
 {
-    public function testFirst()
+    public function testFirstQuestion()
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/questions/1');
+        $crawler = $client->request('GET', '/cards/1/question');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $this->assertContains('First Question?', $crawler->text());
