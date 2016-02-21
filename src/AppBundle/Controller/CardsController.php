@@ -15,4 +15,12 @@ class CardsController extends Controller
     {
         return $this->render('default/question.html.twig');
     }
+
+    /**
+     * @Route("/cards/{id}/answer")
+     */
+    public function answerAction($id)
+    {
+        return $this->render('default/answer.html.twig');
+    }
 }

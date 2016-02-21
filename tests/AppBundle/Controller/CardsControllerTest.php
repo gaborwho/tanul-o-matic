@@ -15,4 +15,14 @@ class CardsControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $this->assertContains('First Question?', $crawler->text());
     }
+
+    public function testFirstAnswer()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/cards/1/answer');
+
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertContains('First Answer.', $crawler->text());
+    }
 }
