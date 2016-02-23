@@ -4,7 +4,6 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 
 class CardsController extends Controller
 {
@@ -13,7 +12,12 @@ class CardsController extends Controller
      */
     public function questionAction($id)
     {
-        return $this->render('default/question.html.twig');
+        $questions = array(
+            1 => 'First Question?',
+            2 => 'Second Question?',
+        );
+
+        return $this->render('default/question.html.twig', array('question' => $questions[$id]));
     }
 
     /**
