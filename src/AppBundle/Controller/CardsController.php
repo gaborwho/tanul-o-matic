@@ -25,6 +25,11 @@ class CardsController extends Controller
      */
     public function answerAction($id)
     {
-        return $this->render('default/answer.html.twig');
+        $answers = array(
+            1 => 'First Answer.',
+            2 => 'Second Answer.',
+        );
+
+        return $this->render('default/answer.html.twig', array('answer' => $answers[$id]));
     }
 }
