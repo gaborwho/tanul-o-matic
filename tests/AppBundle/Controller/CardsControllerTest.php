@@ -22,20 +22,31 @@ class CardsControllerTest extends WebTestCase
     public function contents()
     {
         return array(
-            'first question' => array('/cards/1/question', 'First Question?'),
-            'second question' => array('/cards/2/question', 'Second Question?'),
-            'first answer' => array('/cards/1/answer', 'First Answer.'),
-            'second answer' => array('/cards/2/answer', 'Second Answer.'),
-        );
+                'first question' => array('/cards/1/question', 'First Question?'),
+                'second question' => array('/cards/2/question', 'Second Question?'),
+                'first answer' => array('/cards/1/answer', 'First Answer.'),
+                'second answer' => array('/cards/2/answer', 'Second Answer.'),
+                );
     }
 
-    public function testSubmittingQuestionLeadsToAnswer()
+    /**
+     * @dataProvider answersOfQuestions
+     */
+    public function testSubmittingQuestionLeadsToRightAnswer($questionUrl, $answer)
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/cards/1/question');
+        $crawler = $client->request('GET', $questionUrl);
 
         $ansCrawler = $client->click($crawler->selectLink('Submit')->link());
 
-        $this->assertContains('First Answer.', $ansCrawler->text());
+        $this->assertContains($answer, $ansCrawler->text());
+    }
+
+    public function answersOfQuestions()
+    {
+        return array(
+                'first' => array('/cards/1/question', 'First Answer.'),
+                'second' => array('/cards/2/question', 'Second Answer.'),
+                );
     }
 }

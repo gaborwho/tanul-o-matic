@@ -17,7 +17,10 @@ class CardsController extends Controller
             2 => 'Second Question?',
         );
 
-        return $this->render('default/question.html.twig', array('question' => $questions[$id]));
+        return $this->render('default/question.html.twig', array(
+            'question' => $questions[$id],
+            'answerUrl' => "/cards/{$id}/answer"
+        ));
     }
 
     /**
