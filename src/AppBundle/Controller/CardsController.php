@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Entity\Card;
 
 class CardsController extends Controller
 {
@@ -12,13 +13,10 @@ class CardsController extends Controller
      */
     public function questionAction($id)
     {
-        $questions = array(
-            1 => 'First Question?',
-            2 => 'Second Question?',
-        );
+        $cards = Card::getAll();
 
         return $this->render('default/question.html.twig', array(
-            'question' => $questions[$id],
+            'question' => $cards[$id]->question,
             'answerUrl' => "/cards/{$id}/answer"
         ));
     }
@@ -28,11 +26,10 @@ class CardsController extends Controller
      */
     public function answerAction($id)
     {
-        $answers = array(
-            1 => 'First Answer.',
-            2 => 'Second Answer.',
-        );
+        $cards = Card::getAll();
 
-        return $this->render('default/answer.html.twig', array('answer' => $answers[$id]));
+        return $this->render('default/answer.html.twig', array(
+            'answer' => $cards[$id]->answer
+        ));
     }
 }
