@@ -9,6 +9,20 @@ use AppBundle\Entity\Card;
 class CardsController extends Controller
 {
     /**
+     * @Route("/cards")
+     */
+    public function indexAction()
+    {
+        $cards = Card::getAll();
+        return $this->render('default/list.html.twig', array(
+            'cards' => array_map(function($id, $card) { return array(
+                'url' => "/cards/{$id}/question",
+                'question' => $card->question
+            ); }, array_keys($cards), $cards)
+        ));
+    }
+
+    /**
      * @Route("/cards/{id}/question")
      */
     public function questionAction($id)

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+			{% for card in cards %}
+            	<p><a href="{{ card.url|escape }}">{{ card.question|escape }}</a></p>
+			{% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
